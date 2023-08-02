@@ -17,6 +17,7 @@ dependencies:
   flutter_bloc: ^8.1.2
   modular_bloc_bind: ^1.0.1
   hydrated_bloc: ^9.1.2
+  
   #Navigation
   flutter_modular: ^5.0.3
 
@@ -26,6 +27,13 @@ dependencies:
 
   #Log
   logger: ^1.1.0
+
+   #Firebase
+  firebase_auth: ^4.4.2
+  firebase_core: ^2.10.0
+  cloud_firestore: ^4.8.0
+  google_sign_in: ^6.1.0
+  firebase_storage: ^11.2.5
 
   #Utility
   intl: ^0.18.0
