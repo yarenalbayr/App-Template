@@ -1,10 +1,15 @@
+import 'package:app_template/core/navigation/app_modules.dart';
+import 'package:app_template/view/auth/view/auth_state_listener.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-import 'core/navigation/app_modules.dart';
-
 void main() {
-  runApp(ModularApp(module: AppModules(), child: const MyApp()));
+  runApp(
+    ModularApp(
+      module: AppModules(),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -16,10 +21,8 @@ class MyApp extends StatelessWidget {
       routeInformationParser: Modular.routeInformationParser,
       routerDelegate: Modular.routerDelegate,
       builder: (context, child) {
-        return const Scaffold(
-          body: Center(
-            child: CircularProgressIndicator(),
-          ),
+        return AuthStateListenerWrapper(
+          child: child ?? const SizedBox.shrink(),
         );
       },
     );

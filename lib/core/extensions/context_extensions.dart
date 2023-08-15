@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -17,7 +16,7 @@ extension PaddingExtension on BuildContext {
   EdgeInsets get paddingLow => EdgeInsets.all(_lowValue);
   EdgeInsets get paddingNormal => EdgeInsets.all(_normalValue);
   EdgeInsets get paddingMedium => EdgeInsets.all(_mediumValue);
-  EdgeInsets get paddingHigh => EdgeInsets.all( _highValue);
+  EdgeInsets get paddingHigh => EdgeInsets.all(_highValue);
   EdgeInsets get paddingHorizontal =>
       EdgeInsets.symmetric(horizontal: _horizontalValue);
 }
@@ -56,10 +55,10 @@ extension DateFormateExtension on BuildContext {
 }
 
 class DateFormatExtension {
-  final DateTime date;
   DateFormatExtension({
     required this.date,
   });
+  final DateTime date;
 
   String get dateFormatHourShort => DateFormat('ha').format(date);
   String get dateFormatHourLong => DateFormat('h:mma').format(date);
