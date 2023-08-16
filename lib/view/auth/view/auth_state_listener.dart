@@ -67,8 +67,8 @@ class _AuthStateListenerWrapperState extends State<AuthStateListenerWrapper> {
       child: BlocListener<HomeBloc, HomeState>(
         listener: (context, state) {
           state.mapOrNull(
-            loaded: (value) {
-              Modular.to.navigate(HomeRoutes.home);
+            success: (value) {
+              Modular.to.navigate(AuthRoutes.splashView);
             },
           );
         },

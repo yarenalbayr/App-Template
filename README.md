@@ -1,18 +1,23 @@
 
 # App Template
 
+An app template that can be used as a started of a project. Using [flutter modular](https://pub.dev/packages/flutter_modular) package for navigation and handling the separation of each logic and view by its own module.
+
+For state management using [bloc](https://pub.dev/packages/bloc) package, well you know what it is capable of.
+
+This template needs more integrations on views and more service calls can make it more effective.
+
 ## Firebase configuration
 
 ### IOS:
 
 You will need to add `GoogleService-Info.plist` inside `ios/Runner/GoogleService-Info.plist`.
-> ` Please verify if it is in your `.gitignore`.
 
 ### Android:
 
 You will need to add `google-services.json` inside `android/app/google-services.json`.
 
-> Please verify if it is in your `.gitignore`.
+> Please verify if them in your `.gitignore`.
 
 # Architecture and folder structure
 
@@ -56,7 +61,7 @@ One difference between the "global" navigation folder for local is a routes file
 
 > Remember to create a static `moduleName` string. It will be used in [global core](#navigation).
 
-For exemple:
+For example:
 
 ```dart
 class AuthRoutes {
@@ -100,15 +105,12 @@ class ApiSource implements IApiSource {
 }
 ```
 
-> In this architecture, we will the convention of _"I" in the start of the interface_ and _"Impl" in the end of the implemantation_.
-
-> `Important`: All functions in a source api should return a Either that has as left exception (returned in case of error) and the desired response in right. That way will force the user of this function to manage the error.
 
 ## Services
 
 The services will manipulate the data and apply the business logic. This data will be retrieved from the sources. A service can have as many sources as needed, and in all source dependency injections we will use the interface of a source `and never it's implementation`.
 
-For exemple:
+For example:
 
 ```dart
 abstract class IUserInfo {
@@ -139,7 +141,7 @@ In this file we will have the `custom_exception.dart` that contains the interfac
 
 ## Constants
 
-Will handle all constants files. For exemple: _images_constants.dart_, _audio_constants.dart_ and _links_constants.dart_...
+Will handle all constants files. For example: _images_constants.dart_, _audio_constants.dart_ and _links_constants.dart_...
 
 
 ## Extensions
@@ -162,15 +164,11 @@ In each navigation folder (whether in the global core or in the folder that [eac
 Let's use the app_modules.dart as example.
 But this is valid to all modules.
 
-Wee will create the module class that will extend `Module` and put in the getter bind all the dependencies of that bind (services, blocs, etcs...).
+We will create the module class that will extend `Module` and put in the getter bind all the dependencies of that bind (services, blocs, etc.).
 The app module is the root module so inside it we will have binds that all the modules will use. For example, a source module that makes access to a api (because all modules will use this source, all modules will make a call to an api). In a feature module (ex: auth_module.dart) we will have the local blocs of it, services that it will use, etc.
 
 ### Let's see a example of creating a module to auth feature in our app
 
-`Important`: You **need** to know [flutter modular](https://pub.dev/packages/flutter_modular). It's quite easy to use, maybe just by reading the references below you'll already
-understand it. But if you have any questions, go read the [documentation](https://modular.flutterando.com.br/docs/flutter_modular/start/).
-
-> Note: The source, in this exemple bellow, api source, was already instantiated before in the modular structure. That's because it was instanciated in the app_module.dart module. So i can retrive that instance using the i() that modular gives to us.
 
 ```dart
 class AuthModule extends Module {
@@ -180,7 +178,7 @@ class AuthModule extends Module {
       Bind<IAuthService>(
         (i) => AuthService(
           // Use `i` to get instance from previous module.
-          // It is created in the exemple bellow.
+          // It is created in the example bellow.
           api: i<IApiSource>(),
         ),
       ),
@@ -201,7 +199,6 @@ class AuthModule extends Module {
 }
 ```
 
-> The childs will all contain the Raw route constant of string.
 
 ### Registering a feature module in the application's root module.
 
@@ -229,52 +226,6 @@ class AppModules extends Module {
 }
 ```
 
-> The moduleName will be used in app_module.dart as the name of the module.
-
-> These string route constants were created [here](#app-routes-file-in-navigation-folder-inside-module).
-
 > To use the dependency:</br>
 > final userBloc = context.get\<UserBloc>();
 
-## Localization
-
-We'll use Easy Localization package for localize our strings in the app.
-
-On the asset/lang folder inside en-US.json file we should add the string variable name and what it refers to.
-
-Then we should run a script to generate strings from that json file.
-
-I have added scripts/localization.sh folder to make it easy to run the generator function
-
-We can run it with:
-
-```
-sh scripts/localization.sh
-```
-
-Then it automaticaly generates the locale strings from it to:
-lib/core/configurations/localization/locale_keys.g.dart
-
-
-To use it through the app we run:
-```dart 
-Text(LocaleKeys.myYodl.locale)
-```
-
-
-LocalizationManager holds the supported languages in it, to change the localization we call:
-
-```dart
-  context.locale = LanguageManager.instance.enLocale
-```
-
-We can also create linked translations like so:
-```dart
-{
-  "example": {
-    "hello": "Hello",
-    "world": "World!",
-    "helloWorld": "@:example.hello @:example.world"
-  }
-}
-```
