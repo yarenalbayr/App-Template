@@ -22,6 +22,7 @@ class AppModules extends Module {
         AuthRoutes.moduleName,
         module: AuthModule(),
       ),
+      
     ];
   }
 }

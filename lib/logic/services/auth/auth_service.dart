@@ -1,6 +1,6 @@
 import 'package:app_template/core/exceptions/auth_exception.dart';
 import 'package:app_template/core/extensions/either_extension.dart';
-import 'package:app_template/core/helper/logger.dart';
+import 'package:app_template/core/helpers/logger.dart';
 import 'package:app_template/logic/models/user_model.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';

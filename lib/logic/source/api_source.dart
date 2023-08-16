@@ -99,7 +99,7 @@ class ApiSource implements IApiSource {
     required T Function(Map<String, dynamic> map) fromMapFunc,
     Map<String, dynamic>? queryParameters,
     Map<String, dynamic>? headers,
-    payload,
+    dynamic payload,
   }) {
     return _errorWrapper(() async {
       final response = await _dio.post(
