@@ -1,11 +1,17 @@
 
 # App Template
 
-An app template that can be used as a started of a project. Using [flutter modular](https://pub.dev/packages/flutter_modular) package for navigation and handling the separation of each logic and view by its own module.
+An app template that can be used as starter of a project.
 
-For state management using [bloc](https://pub.dev/packages/bloc) package, well you know what it is capable of.
+Mainly using [flutter modular](https://pub.dev/packages/flutter_modular) and [bloc](https://pub.dev/packages/bloc) packages for maintaing the app.
 
-This template needs more integrations on views and more service calls can make it more effective.
+- For navigation, handling the separation of each logic and view by its own module using [flutter modular](https://pub.dev/packages/flutter_modular) package.
+
+- For state management using [bloc](https://pub.dev/packages/bloc) package, well you know what it is capable of.
+
+Right now it is using Firebase Auth as authentication however it is flexible so it can be changed by changing only service functions as you wish.
+
+This template needs more integrations on views and service calls to be a part of a real project.
 
 ## Firebase configuration
 
@@ -22,122 +28,33 @@ You will need to add `google-services.json` inside `android/app/google-services.
 # Architecture and folder structure
 
 Content table:
-
-- [View](#ℹ️-modules)
-- [Logic](#ℹ️-logic)
-  - [Blocs (global)](#blocs-global)
-  - [Models](#entities)
-  - [Source](#sources)
-  - [Services](#services)
 - [Core](#ℹ️-core)
-  - [Exceptions](#exceptions)
-  - [Constants](#constants)
-  - [Extensions](#extensions)
-  - [Mixins](#mixins)
-  - [Helpers](#helpers)
-  - [Navigation](#navigation)
   - [Configurations](#configurations)
-
-# ℹ️ `View`
-
-Here we will put the screen of are module.
-
-## Widgets
-
-Here are the widgets that recurrently appear in the module's pages/modals and have been extracted to a separate component to be reused.
-
-## View-Models
-
-The View Models are structures that will help demonstrate logic produced by the screens.
-
-
-## Core (Of module)
-
-Similar to the "global" core shared between modules. 
-
-### App routes file in navigation folder inside module
-
-One difference between the "global" navigation folder for local is a routes file with the constant Strings of the routes.
-
-> Remember to create a static `moduleName` string. It will be used in [global core](#navigation).
-
-For example:
-
-```dart
-class AuthRoutes {
-  // Create a route with the called `moduleName`.
-  static const String moduleName = '/auth';
-
-  // Use the raw routes with the preffix of the moduleName.
-  static final String login = '$moduleName$RawAuthRoutes.login';
-  static final String signUp = '$moduleName$RawAuthRoutes.signUp';
-}
-
-// Create the routes
-class RawAuthRoutes {
-  static const String login = '/login';
-  static const String signUp = '/signUp';
-
-}
-```
-
-# ℹ️ `Logic`
-
-## Sources
-
-Will be the source the data that the app will use. This structure will bring the data that the services will manipulate. Each data in the app has to come from a source, such as api source, module_name source, etc.
-
-Each `source file will have a interface and implementation` class.
-
-For example:
-
-```dart
-abstract class IApiSource {
-  Future<Either<CustomException, T> get<T>();
-  Future<Either<CustomException, T> put<T>();
-  Future<Either<CustomException, T> patch<T>();
-  Future<Either<CustomException, T> delete<T>();
-}
-
-// Implementation in the same file, right below the interface.
-class ApiSource implements IApiSource {
-  ...
-}
-```
+  - [Constants](#constants)
+  - [Exceptions](#exceptions)
+  - [Extensions](#extensions)
+  - [Helpers](#helpers)
+  - [Mixins](#mixins)
+  - [Navigation](#navigation)
+- [Logic](#ℹ️-logic)
+  - [Blocs](#blocs-global)
+  - [Models](#entities)
+  - [Services](#services)
+  - [Source](#sources)
+- [View](#ℹ️-modules)
 
 
-## Services
 
-The services will manipulate the data and apply the business logic. This data will be retrieved from the sources. A service can have as many sources as needed, and in all source dependency injections we will use the interface of a source `and never it's implementation`.
 
-For example:
-
-```dart
-abstract class IUserInfo {
-  Future<Either<CustomException, UserModel> getUserData();
-}
-
-class UserInfo implements IUserInfo {
-  final IApiSource _api;
-  const UserInfo({
-    required IApiSource api,
-  }) : _api = api;
-
-  Future<Either<CustomException, UserModel> getUserData() {
-    // If you want to make any logic and manipulate the data, feel free to do it here.
-    return _api.get('users/info');
-  }
-}
-```
 
 # ℹ️ `Core`
 
-Fundamental functionality to all the layers (being accessed by any of them). This functionality can not have bussiness logic. They are more like utilities like mixins, extensions, constants and other things that we will see below.
+Fundamental functionality to all the layers (being accessed by any of them). This functionality can not have bussiness logic. They are more like utilities like mixins, extensions, constants and other things.
 
 ## Exceptions
 
 Will contain all the typed errors. This error will be used to return as `left in the either` in the source and services classes. And that either will be handled in the bloc to notify the user of the error that had occurred.
-In this file we will have the `custom_exception.dart` that contains the interface that will be the base of all failures. And inside the `failures/` folder we will create create specializations for each [source](#sources) and global mixin error, etc.
+
 
 ## Constants
 
@@ -148,18 +65,12 @@ Will handle all constants files. For example: _images_constants.dart_, _audio_co
 
 It will have all kinds of extensions available globally.
 
-## UI
-
-### Theme
-We will be using dark theme and customized text and button styles with colors inside ColorConstants file.
-
-### Components
 
 ## Navigation
 
 In this folder we will put all navigation-related files.
 
-In each navigation folder (whether in the global core or in the folder that [each module contains](#app-routes-file-in-navigation-folder-inside-module)) we will have a file with the module's configuration.
+In each navigation folder (whether in the global core or in the folder that each module contains we will have a file with the module's configuration.
 
 Let's use the app_modules.dart as example.
 But this is valid to all modules.
@@ -223,6 +134,95 @@ class AppModules extends Module {
       ),
     ];
   }
+}
+```
+
+# ℹ️ `Logic`
+
+## Blocs 
+
+Here we will put the more global blocs, that are used in multiple modules/pages.
+For example: a bloc that will update the state of the app to a error page when it dosen't have internet. Despite being global, they work like normal module blocks so they don't manage business rules and are dependent of a service to do so.
+
+## Models
+
+The project models are the actual data that the [services](#services) will manipulate. They will be obtained by [sources](#sources).
+## Sources
+
+Will be the source the data that the app will use. This structure will bring the data that the services will manipulate. Each data in the app has to come from a source, such as api source, module_name source, etc.
+
+Each `source file will have a interface and implementation` class.
+
+For example:
+
+```dart
+abstract class IApiSource {
+  Future<Either<Exception, T> get<T>();
+  Future<Either<Exception, T> put<T>();
+  Future<Either<Exception, T> patch<T>();
+  Future<Either<Exception, T> delete<T>();
+}
+
+// Implementation in the same file, right below the interface.
+class ApiSource implements IApiSource {
+  ...
+}
+```
+
+
+## Services
+
+The services will manipulate the data and apply the business logic. This data will be retrieved from the sources. A service can have as many sources as needed, and in all source dependency injections we will use the interface of a source `and never it's implementation`.
+
+For example:
+
+```dart
+abstract class IUserInfo {
+  Future<Either<Exception, UserModel> getUserData();
+}
+
+class UserInfo implements IUserInfo {
+  final IApiSource _api;
+  const UserInfo({
+    required IApiSource api,
+  }) : _api = api;
+
+  Future<Either<Exception, UserModel> getUserData() {
+    // If you want to make any logic and manipulate the data, feel free to do it here.
+    return _api.get('users/info');
+  }
+}
+```
+
+# ℹ️ `View`
+
+Here we will put the screen of are module.
+
+## View (Of module)
+The ui of the screens
+## Core (Of module)
+
+Similar to the "global" core shared between modules but has more spesific usage by its own module. 
+
+### App routes file in navigation folder inside module
+
+For example:
+
+```dart
+class AuthRoutes {
+  // Create a route with the called `moduleName`.
+  static const String moduleName = '/auth';
+
+  // Use the raw routes with the preffix of the moduleName.
+  static final String login = '$moduleName$RawAuthRoutes.login';
+  static final String signUp = '$moduleName$RawAuthRoutes.signUp';
+}
+
+// Create the routes
+class RawAuthRoutes {
+  static const String login = '/login';
+  static const String signUp = '/signUp';
+
 }
 ```
 
