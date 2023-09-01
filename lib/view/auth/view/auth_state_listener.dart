@@ -5,7 +5,6 @@ import 'package:app_template/logic/blocs/home/home_bloc.dart';
 import 'package:app_template/logic/blocs/user/user_bloc.dart';
 import 'package:app_template/logic/models/user_model.dart';
 import 'package:app_template/view/auth/core/navigation/auth_module.dart';
-import 'package:app_template/view/home/core/navigation/home_routes.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -50,8 +49,6 @@ class _AuthStateListenerWrapperState extends State<AuthStateListenerWrapper> {
       }
     });
   }
-
-
 
   @override
   Widget build(BuildContext context) {
