@@ -1,7 +1,7 @@
+import 'package:app_template/core/navigation/navigation_extension.dart';
+import 'package:app_template/logic/blocs/user/user_bloc.dart';
+import 'package:app_template/logic/models/user_model.dart';
 import 'package:flutter/material.dart';
-import 'package:ieee_event_app/core/navigation/navigation_extension.dart';
-import 'package:ieee_event_app/logic/blocs/user/user_bloc.dart';
-import 'package:ieee_event_app/logic/models/user_model.dart';
 
 extension UserExtension on BuildContext {
   UserModel get userCredentials {

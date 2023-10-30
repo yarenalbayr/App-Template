@@ -1,9 +1,9 @@
 import 'dart:async';
 
+import 'package:app_template/logic/models/user_model.dart';
+import 'package:app_template/logic/services/auth/auth_service.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:ieee_event_app/logic/models/user_model.dart';
-import 'package:ieee_event_app/logic/services/auth/auth_service.dart';
 
 part 'user_bloc.freezed.dart';
 part 'user_event.dart';

@@ -1,14 +1,14 @@
 import 'dart:async';
 
+import 'package:app_template/core/navigation/navigation_extension.dart';
+import 'package:app_template/logic/blocs/home/home_bloc.dart';
+import 'package:app_template/logic/blocs/user/user_bloc.dart';
+import 'package:app_template/logic/models/user_model.dart';
+import 'package:app_template/view/auth/core/navigation/auth_module.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:ieee_event_app/core/navigation/navigation_extension.dart';
-import 'package:ieee_event_app/logic/blocs/home/home_bloc.dart';
-import 'package:ieee_event_app/logic/blocs/user/user_bloc.dart';
-import 'package:ieee_event_app/logic/models/user_model.dart';
-import 'package:ieee_event_app/view/auth/core/navigation/auth_module.dart';
 
 ///Listens to state changes of user from firebase if user is null navigates to
 ///login if user exist navigates to home view
