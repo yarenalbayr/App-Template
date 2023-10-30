@@ -1,8 +1,8 @@
+import 'package:app_template/core/constants/string_constants.dart';
+import 'package:app_template/core/extensions/index.dart';
+import 'package:app_template/core/navigation/navigation_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ieee_event_app/core/constants/string_constants.dart';
-import 'package:ieee_event_app/core/extensions/index.dart';
-import 'package:ieee_event_app/core/navigation/navigation_extension.dart';
 
 class TemplateSplashView<B extends StateStreamable<S>, S>
     extends StatefulWidget {

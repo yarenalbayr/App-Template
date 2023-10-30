@@ -1,6 +1,6 @@
 {
-    "name": "ieee_event_app",
-    "short_name": "ieee_event_app",
+    "name": "app_template",
+    "short_name": "app_template",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

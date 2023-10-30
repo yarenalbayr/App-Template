@@ -1,4 +1,4 @@
-package com.example.ieee_event_app
+package com.example.app_template
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -1,8 +1,8 @@
 // ignore_for_file: inference_failure_on_function_invocation
 
+import 'package:app_template/logic/models/user_model.dart';
+import 'package:app_template/logic/services/auth/auth_service.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:ieee_event_app/logic/models/user_model.dart';
-import 'package:ieee_event_app/logic/services/auth/auth_service.dart';
 
 void main() {
   late IAuthService authService;

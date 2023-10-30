@@ -1,7 +1,7 @@
+import 'package:app_template/core/constants/api_const.dart';
+import 'package:app_template/logic/models/home_model.dart';
+import 'package:app_template/logic/source/api_source.dart';
 import 'package:dartz/dartz.dart';
-import 'package:ieee_event_app/core/constants/api_const.dart';
-import 'package:ieee_event_app/logic/models/home_model.dart';
-import 'package:ieee_event_app/logic/source/api_source.dart';
 
 abstract class IHomeService {
   const IHomeService();
