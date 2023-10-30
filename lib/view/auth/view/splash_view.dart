@@ -1,9 +1,9 @@
-import 'package:app_template/core/navigation/navigation_extension.dart';
-import 'package:app_template/logic/blocs/home/home_bloc.dart';
-import 'package:app_template/view/home/core/navigation/home_routes.dart';
-import 'package:app_template/view/template/template_splash_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:ieee_event_app/core/navigation/navigation_extension.dart';
+import 'package:ieee_event_app/logic/blocs/home/home_bloc.dart';
+import 'package:ieee_event_app/view/home/core/navigation/home_routes.dart';
+import 'package:ieee_event_app/view/template/template_splash_view.dart';
 
 class SplashView extends StatelessWidget {
   const SplashView({super.key});

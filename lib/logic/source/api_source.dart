@@ -1,7 +1,7 @@
-import 'package:app_template/core/extensions/either_extension.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
+import 'package:ieee_event_app/core/extensions/either_extension.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 abstract class IApiSource {

@@ -1,7 +1,7 @@
-import 'package:app_template/core/navigation/app_modules.dart';
-import 'package:app_template/view/auth/view/auth_state_listener.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:ieee_event_app/core/navigation/app_modules.dart';
+import 'package:ieee_event_app/view/auth/view/auth_state_listener.dart';
 
 void main() {
   runApp(

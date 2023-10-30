@@ -1,9 +1,9 @@
-import 'package:app_template/core/exceptions/auth_exception.dart';
-import 'package:app_template/core/extensions/either_extension.dart';
-import 'package:app_template/core/helpers/logger.dart';
-import 'package:app_template/logic/models/user_model.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:ieee_event_app/core/exceptions/auth_exception.dart';
+import 'package:ieee_event_app/core/extensions/either_extension.dart';
+import 'package:ieee_event_app/core/helpers/logger.dart';
+import 'package:ieee_event_app/logic/models/user_model.dart';
 
 abstract class IAuthService {
   Future<Either<Exception, UserModel>> createUserWithEmailAndPassword({
